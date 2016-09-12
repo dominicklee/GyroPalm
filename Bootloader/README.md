@@ -26,7 +26,7 @@ __________________|________________
 9. In the Arduino program, click *Tools > Boards > MightyMini 1284p @ 8MHz*
 10. In the Arduino program, click *Tools > Programmer > Arduino as ISP*
 11. Now, you can burn the bootloader by clicking *Tools > Burn Bootloader*
-	If you get an error, try step 11 again until you see frequent blinking LEDs.
+	If you get an error, try this step again until you see frequent blinking LEDs.
 12. Once the bootloader is burned, disconnect ISP headers from both boards.
 13. Plug in the GyroPalm board via USB, check for the Serial Port.
 14. If a new COM port shows up, you may now upload to the GyroPalm board with GyroPalm IDE.
