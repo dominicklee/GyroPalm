@@ -1,0 +1,77 @@
+
+void setup()
+{
+    pinMode(23, OUTPUT);  //pwr enable
+    pinMode(18, OUTPUT);  //notif LED
+    pinMode(0, OUTPUT);
+    
+    digitalWrite(23, HIGH);  //keep the MCU on
+    
+    digitalWrite(18, HIGH);  //keep the LED on
+    delay(2000);
+    digitalWrite(18, LOW);  //keep the LED on
+    delay(2000);    
+    
+    pinMode(1, INPUT_PULLUP);
+    pinMode(2, INPUT_PULLUP);
+    pinMode(3, INPUT_PULLUP);
+    pinMode(11, INPUT_PULLUP);
+    Serial.begin(9600);
+    
+    delay(2000);
+    Serial.println("Welcome to GyroPalm");
+}
+
+void loop()
+{
+   if (digitalRead(1) == LOW)
+   {
+     Serial.print("Btn Up pressed  ");
+   }
+   else
+   {
+     Serial.print("Btn Up off  ");
+   }
+   
+   if (digitalRead(2) == LOW)
+   {
+     Serial.print("Btn Select pressed  ");
+     digitalWrite(0, HIGH);
+     delay(500);
+     digitalWrite(0, LOW);
+     delay(5000);
+   }
+   else
+   {
+     Serial.print("Btn Select off  ");
+   }
+   
+   if (digitalRead(3) == LOW)
+   {
+     Serial.print("Btn Down pressed  ");
+   }
+   else
+   {
+     Serial.print("Btn Down off  ");
+   }
+ 
+   if (digitalRead(11) == LOW)
+   {
+     Serial.print("Btn Pwr pressed  ");
+     digitalWrite(0, HIGH);
+     delay(500);
+     digitalWrite(0, LOW);
+     delay(1500);
+     if (digitalRead(11) == LOW)
+     {
+         digitalWrite(23, LOW);
+     }
+   }
+   else
+   {
+       Serial.print("Btn Pwr off  ");
+   }
+   
+   Serial.println();
+   delay(100);
+}

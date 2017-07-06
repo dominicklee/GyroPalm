@@ -1,0 +1,42 @@
+/* 
+     Welcome to the GyroPalm IDE
+     Here you can write, edit, and test your own code with the GyroPalm device.
+     For more information, click on Help -> Getting Started
+*/
+
+#include <IRremote.h>
+
+
+void setup()
+{
+    pinMode(23, OUTPUT);  //pwr enable (DO NOT REMOVE)
+    pinMode(0, OUTPUT); //vibration motor
+    pinMode(11, INPUT_PULLUP);  //pwr button
+    pinMode(14, OUTPUT);    //turn on IR TX
+    
+    digitalWrite(23, HIGH);  //keep the MCU on (DO NOT REMOVE)
+    digitalWrite(14, LOW);
+    delay(100);  
+    Serial.begin(9600);
+    
+}
+
+
+void loop()
+{
+    
+    
+    //Power Off (DO NOT REMOVE)
+    if (digitalRead(11) == LOW)
+    {
+       //Serial.print("Btn Pwr pressed  ");
+     digitalWrite(0, HIGH);
+     delay(500);
+     digitalWrite(0, LOW);
+     delay(1500);
+     if (digitalRead(11) == LOW)
+     {
+         digitalWrite(23, LOW);
+     }
+    }
+}

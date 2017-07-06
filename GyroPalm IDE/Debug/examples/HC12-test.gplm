@@ -1,0 +1,54 @@
+/* 
+     Welcome to the GyroPalm IDE
+     Here you can write, edit, and test your own code with the GyroPalm device.
+     For more information, click on Help -> Getting Started
+*/
+
+int HC12rx = 20;
+int HC12tx = 21;
+
+#include <SoftwareSerial.h>
+SoftwareSerial mySerial(21, 20); // RX, TX
+    
+void setup()
+{
+    pinMode(23, OUTPUT);  //pwr enable (DO NOT REMOVE)
+    pinMode(0, OUTPUT); //vibration motor
+    pinMode(11, INPUT_PULLUP);  //pwr button
+    pinMode(2, INPUT_PULLUP);   //select btn
+    
+    digitalWrite(23, HIGH);  //keep the MCU on (DO NOT REMOVE)
+    delay(100);  
+    Serial.begin(9600);
+    mySerial.begin(9600);
+}
+
+
+void loop()
+{
+    
+    if (digitalRead(2) == LOW)
+    {
+        digitalWrite(0, HIGH);
+        delay(100);
+        digitalWrite(0, LOW);
+        mySerial.println("trigger");
+        Serial.println("trigger");
+        delay(2000);
+    
+    }
+    
+    //Power Off (DO NOT REMOVE)
+    if (digitalRead(11) == LOW)
+    {
+       //Serial.print("Btn Pwr pressed  ");
+     digitalWrite(0, HIGH);
+     delay(500);
+     digitalWrite(0, LOW);
+     delay(1500);
+     if (digitalRead(11) == LOW)
+     {
+         digitalWrite(23, LOW);
+     }
+    }
+}
